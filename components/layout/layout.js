@@ -1,10 +1,13 @@
-import Header from './header';
+import {Box, Container} from '@chakra-ui/react';
+import Navbar from './navbar';
 
 function Layout({children}) {
   return (
     <>
-      <Header />
-      <main>{children}</main>
+      <Navbar />
+      <Container p="5" minW="80%" minH="100vh">
+        {children}
+      </Container>
     </>
   );
 }
