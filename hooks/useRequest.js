@@ -30,10 +30,18 @@ export const useRequest = (path) => {
   return {datas, error, isLoadingMore, size, setSize, isReachingEnd};
 };
 
-export const useRequestDetail = (idUser) => {
-  const {data, error, isLoading, isValidating} = useSWR(
-    `${url}users/${idUser}posts`,
+export const useRequestDetail = (blogId) => {
+  const {data: blog, error, isLoading, isValidating} = useSWR(
+    `${url}posts/${blogId}`,
     fetcher
   );
-  return {data, error, isLoading, isValidating};
+  return {blog, error, isLoading, isValidating};
+};
+
+export const useRequestComment = (blogId) => {
+  const {data: comments, error, isLoading, isValidating} = useSWR(
+    `${url}posts/${blogId}/comments`,
+    fetcher
+  );
+  return {comments, error, isLoading, isValidating};
 };
