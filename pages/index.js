@@ -32,7 +32,7 @@ export default function Home() {
       </Box>
       <SimpleGrid
         spacing={4}
-        templateColumns="repeat(auto-fill, minmax(400px, 1fr))"
+        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
       >
         {posts.map((post, idx) => (
           <BlogList post={post} key={idx} />
