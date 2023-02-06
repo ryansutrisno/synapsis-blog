@@ -1,3 +1,4 @@
+import {useRef} from 'react';
 import {
   Box,
   Flex,
@@ -10,6 +11,8 @@ import {
 } from '@chakra-ui/react';
 import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import Link from 'next/link';
+import {useOutsideClick} from '@chakra-ui/react';
+import DarkModeSwitch from '../ui/DarkModeSwitch';
 import navStyles from './navbar.module.css';
 const Links = [
   {
@@ -39,7 +42,12 @@ const NavLink = ({children, path}) => (
 );
 
 export default function Navbar() {
+  const ref = useRef();
   const {isOpen, onOpen, onClose} = useDisclosure();
+  useOutsideClick({
+    ref: ref,
+    handler: () => onClose(),
+  });
 
   return (
     <div className={navStyles.mobileNav}>
@@ -53,6 +61,7 @@ export default function Navbar() {
                   {name}
                 </NavLink>
               ))}
+              <DarkModeSwitch />
             </HStack>
           </HStack>
           <IconButton
@@ -65,7 +74,7 @@ export default function Navbar() {
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{md: 'none'}}>
+          <Box ref={ref} pb={4} display={{md: 'none'}}>
             <Stack as={'nav'} spacing={4}>
               {Links.map(({id, name, path}) => (
                 <NavLink key={id} path={path}>
@@ -73,6 +82,7 @@ export default function Navbar() {
                 </NavLink>
               ))}
             </Stack>
+            <DarkModeSwitch />
           </Box>
         ) : null}
       </Box>

@@ -41,7 +41,7 @@ export default function Home() {
       <Box mt="5" justify="center" direction="row" align="center">
         <Button
           isLoading={isLoadingMore}
-          disabled={isLoadingMore || isReachingEnd}
+          isDisabled={isLoadingMore || isReachingEnd}
           onClick={() => setSize(size + 1)}
         >
           {isReachingEnd ? 'No more posts' : 'Load more posts'}
